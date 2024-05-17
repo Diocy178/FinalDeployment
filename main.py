@@ -3,6 +3,7 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import cv2
+import os
 
 # Load the trained model
 model = load_model('finals_model.h5')
