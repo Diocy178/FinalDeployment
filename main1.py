@@ -50,6 +50,11 @@ if model is not None:
         with open(img_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         
+        # Save the image to the local directory
+        local_img_path = os.path.join(os.getcwd(), "uploaded_image.jpg")
+        with open(local_img_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+        
         # Display the uploaded image
         st.image(img_path, caption='Uploaded Image', use_column_width=True)
         st.write("")
@@ -80,3 +85,6 @@ if model is not None:
 
             # Display the directory where the images are moved
             st.write(f"Images moved to: {moved_directory}")
+
+            # Display the local directory where the image is saved
+            st.write(f"Image saved to: {local_img_path}")
