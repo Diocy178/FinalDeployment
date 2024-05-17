@@ -68,3 +68,12 @@ if model is not None:
             os.makedirs(destination_folder, exist_ok=True)
             shutil.move(img_path, os.path.join(destination_folder, os.path.basename(img_path)))
             st.write(f"Image moved to {label} folder.")
+
+            # Get the current working directory
+            current_directory = os.getcwd()
+
+            # Display the current working directory
+            st.write(f"Current Directory: {current_directory}")
+
+            # Display the directory where the images are moved
+            st.write(f"Images moved to: {destination_folder}")
