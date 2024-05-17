@@ -1,41 +1,46 @@
 import streamlit as st
-import tensorflow as tf
-from PIL import Image, ImageOps
 import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+import cv2
 
-# Load the pre-trained model (MobileNetV2 in this case)
-model = tf.keras.applications.MobileNetV2(weights='imagenet')
+# Load the trained model
+model = load_model('finals_model.h5')
 
-# Function to preprocess the uploaded image
-def preprocess_image(image):
-    size = (224, 224)  # MobileNetV2 expects 224x224 images
-    image = ImageOps.fit(image, size, Image.ANTIALIAS)
-    image = np.asarray(image)
-    image = np.expand_dims(image, axis=0)
-    image = tf.keras.applications.mobilenet_v2.preprocess_input(image)
-    return image
+# Define the class labels
+class_labels = ['Rain', 'Sunrise', 'Cloudy', 'Shine']
 
-# Function to decode predictions
-def decode_predictions(predictions):
-    return tf.keras.applications.mobilenet_v2.decode_predictions(predictions, top=3)[0]
+# Function to predict the class of an image
+def predict_image(img_path, model):
+    img = image.load_img(img_path, target_size=(128, 128))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array = img_array / 255.0
+    predictions = model.predict(img_array)
+    predicted_class = class_labels[np.argmax(predictions)]
+    return predicted_class, np.max(predictions)
 
 # Streamlit app
-st.title("Image Classifier")
-st.write("Upload an image to classify it")
+st.title("Weather Image Classification")
+st.write("Upload an image to classify the weather condition.")
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
 
 if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    # Save the uploaded file
+    with open("uploaded_image.jpg", "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
     st.write("")
     st.write("Classifying...")
-    
-    preprocessed_image = preprocess_image(image)
-    predictions = model.predict(preprocessed_image)
-    decoded_predictions = decode_predictions(predictions)
-    
-    st.write("Top Predictions:")
-    for i, (imagenet_id, label, score) in enumerate(decoded_predictions):
-        st.write(f"{i+1}. {label}: {score*100:.2f}%")
+
+    # Predict the image
+    label, confidence = predict_image("uploaded_image.jpg", model)
+    st.write(f"Prediction: {label}")
+    st.write(f"Confidence: {confidence:.2f}")
+
+# To run the Streamlit app, use the following command:
+# streamlit run app.py
+
 
