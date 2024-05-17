@@ -75,5 +75,8 @@ if model is not None:
             # Display the current working directory
             st.write(f"Current Directory: {current_directory}")
 
+            # Get the directory where the images are moved relative to the app directory
+            moved_directory = os.path.abspath(os.path.join(current_directory, "data"))
+
             # Display the directory where the images are moved
-            st.write(f"Images moved to: {destination_folder}")
+            st.write(f"Images moved to: {moved_directory}")
