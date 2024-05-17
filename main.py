@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-import cv2
 import os
 
 # Load the trained model
@@ -17,9 +16,10 @@ def predict_image(img_path, model):
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.0
-    predictions = model.predict(img_array)
+    predictions = model.predict(img_array, verbose=0)  # Added verbose=0 for cleaner output
     predicted_class = class_labels[np.argmax(predictions)]
-    return predicted_class, np.max(predictions)
+    confidence = np.max(predictions)
+    return predicted_class, confidence
 
 # Streamlit app
 st.title("Weather Image Classification")
@@ -36,12 +36,12 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
 
-    # Predict the image
-    label, confidence = predict_image("uploaded_image.jpg", model)
+    # Add a spinner while the model is making a prediction
+    with st.spinner('Model is working...'):
+        label, confidence = predict_image("uploaded_image.jpg", model)
+    
     st.write(f"Prediction: {label}")
     st.write(f"Confidence: {confidence:.2f}")
 
 # To run the Streamlit app, use the following command:
 # streamlit run app.py
-
-
