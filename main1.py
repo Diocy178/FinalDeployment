@@ -40,8 +40,9 @@ st.markdown(
 st.sidebar.title("Emtech Final Project")
 with st.sidebar:
     st.subheader("Developers:")
-    st.write("James Solomon Diocena")
-    st.write("Mark John Villanueva")
+    st.write('<p style="color:white;">James Solomon Diocena</p>', unsafe_allow_html=True)
+    st.write('<p style="color:white;">Mark John Villanueva</p>', unsafe_allow_html=True)
+
 
 st.title("Weather Image Classification")
 st.write("Upload an image to classify the weather condition.")
