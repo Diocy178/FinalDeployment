@@ -38,10 +38,9 @@ st.markdown(
 )
 
 # Streamlit app
-st.sidebar.title("Emtech Final Project")
-st.sidebar.subheader("Developers:")
-st.sidebar.write("James Solomon Diocena")
-st.sidebar.write("Mark John Villanueva")
+with st.beta_expander("Developers"):
+    st.write("James Solomon Diocena")
+    st.write("Mark John Villanueva")
 
 st.title("Weather Image Classification")
 st.write("Upload an image to classify the weather condition.")
