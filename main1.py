@@ -39,7 +39,7 @@ st.markdown(
 # Streamlit app
 st.sidebar.title("Emtech Final Project")
 with st.sidebar:
-    st.subheader('<p style="color:white;">James Solomon Diocena</p>', unsafe_allow_html=True)
+    st.subheader('<p style="color:white;">Developer</p>')
     st.write('<p style="color:white;">James Solomon Diocena</p>', unsafe_allow_html=True)
     st.write('<p style="color:white;">Mark John Villanueva</p>', unsafe_allow_html=True)
 
