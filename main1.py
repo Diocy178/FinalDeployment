@@ -64,13 +64,25 @@ if uploaded_file is not None:
     st.write(f"Prediction: {label}")
     st.write(f"Confidence: {confidence:.2f}")
 
-# Add "About Project" section in upper left arrow
+# Add JavaScript to automatically show sidebar when cursor moves to upper left corner
 st.markdown(
     """
-    <div class="sidebar" style="position: fixed; top: 10px; left: 10px; padding: 10px; background-color: #f0f0f0;">
-        <h3>About Project</h3>
-        <p>This project is developed for the Emtech Final Project. It classifies weather conditions from images.</p>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            const sidebar = document.querySelector(".sidebar");
+            const main = document.querySelector(".main");
+
+            document.addEventListener("mousemove", function(event) {
+                if (event.clientX < 10 && event.clientY < 10) {
+                    sidebar.style.display = "block";
+                    main.style.marginLeft = "250px";  // Adjust this value based on your sidebar width
+                } else {
+                    sidebar.style.display = "none";
+                    main.style.marginLeft = "0";
+                }
+            });
+        });
+    </script>
     """,
     unsafe_allow_html=True
 )
