@@ -42,17 +42,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <style>
-    .sidebar .sidebar-content .st-ec {
-        color: white;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Set the title in the sidebar
 st.sidebar.title("Emtech Final-Project")
 with st.sidebar:
