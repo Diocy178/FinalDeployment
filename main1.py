@@ -21,12 +21,15 @@ def predict_image(img_path, model):
     confidence = np.max(predictions)
     return predicted_class, confidence
 
-# Apply gradient background color using CSS
+# Apply gradient background color and text color using CSS
 st.markdown(
     """
     <style>
     .main {
         background: linear-gradient(to bottom right, #FFDEE9, #B5FFFC);
+    }
+    h1, .stMarkdown {
+        color: black;
     }
     </style>
     """,
