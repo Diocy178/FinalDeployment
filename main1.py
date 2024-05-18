@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-import os
 
 # Load the trained model
 model = load_model('finals_model.h5')
@@ -65,5 +64,25 @@ if uploaded_file is not None:
     st.write(f"Prediction: {label}")
     st.write(f"Confidence: {confidence:.2f}")
 
-# To run the Streamlit app, use the following command:
-# streamlit run app.py
+# Add JavaScript to automatically show sidebar when cursor moves to upper left corner
+st.markdown(
+    """
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            const sidebar = document.querySelector(".sidebar");
+            const main = document.querySelector(".main");
+
+            document.addEventListener("mousemove", function(event) {
+                if (event.clientX < 10 && event.clientY < 10) {
+                    sidebar.style.display = "block";
+                    main.style.marginLeft = "250px";  // Adjust this value based on your sidebar width
+                } else {
+                    sidebar.style.display = "none";
+                    main.style.marginLeft = "0";
+                }
+            });
+        });
+    </script>
+    """,
+    unsafe_allow_html=True
+)
