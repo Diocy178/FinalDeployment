@@ -32,6 +32,12 @@ st.markdown(
         color: black;
     }
     </style>
+
+    <style>
+    .sidebar .sidebar-content .st-ec {
+        color: white;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
