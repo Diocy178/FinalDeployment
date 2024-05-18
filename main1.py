@@ -21,14 +21,15 @@ def predict_image(img_path, model):
     confidence = np.max(predictions)
     return predicted_class, confidence
 
-# Apply gradient background color and text color using CSS
+# Apply weather-themed gradient background color and text color using CSS
 st.markdown(
     """
     <style>
     .main {
-        background: linear-gradient(to bottom right, #FFDEE9, #B5FFFC);
+        background: linear-gradient(to bottom right, #00c6ff, #0072ff);
+        color: black;
     }
-    h1, .stMarkdown {
+    h1, .stMarkdown, .stFileUploader {
         color: black;
     }
     </style>
