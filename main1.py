@@ -38,7 +38,9 @@ st.markdown(
 )
 
 # Streamlit app
-with st.expander("Developers"):
+st.sidebar.title("Emtech Final Project")
+with st.sidebar:
+    st.subheader("Developers:")
     st.write("James Solomon Diocena")
     st.write("Mark John Villanueva")
 
