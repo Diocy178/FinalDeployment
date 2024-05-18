@@ -38,7 +38,7 @@ st.markdown(
 )
 
 # Streamlit app
-with st.beta_expander("Developers"):
+with st.expander("Developers"):
     st.write("James Solomon Diocena")
     st.write("Mark John Villanueva")
 
