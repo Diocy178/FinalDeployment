@@ -8,7 +8,7 @@ import os
 model = load_model('finals_model.h5')
 
 # Define the class labels
-class_labels = ['Rain', 'Sunrise', 'Cloudy', 'Shine']
+class_labels = ['Rain', 'Shine', 'Cloudy', 'Sunrise']
 
 # Function to predict the class of an image
 def predict_image(img_path, model):
